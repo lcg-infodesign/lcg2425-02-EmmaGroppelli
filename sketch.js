@@ -1,6 +1,5 @@
-let rows = 20; // Numero di righe aumentato
-let cols = 20; // Numero di colonne aumentato
-
+let rows = 20; // numero  righe 
+let cols = 20; // numero colonne 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noLoop();
@@ -9,9 +8,9 @@ function setup() {
 function draw() {
   background(0);
   
-  let glyphSize = min(width / (cols * 1.5), height / (rows * 1.5)); // Dimensione del cerchio contenitore del glifo
-  let marginX = (width - (cols * glyphSize * 1.5)) / 2; // Centra i glifi orizzontalmente
-  let marginY = (height - (rows * glyphSize * 1.5)) / 2; // Centra i glifi verticalmente
+  let glyphSize = min(width / (cols * 1.5), height / (rows * 1.5)); // dimensione cerchio contenitore glifo
+  let marginX = (width - (cols * glyphSize * 1.5)) / 2; // centra i glifi orizzontale
+  let marginY = (height - (rows * glyphSize * 1.5)) / 2; // centra i glifi verticale
   
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
@@ -29,11 +28,11 @@ function drawGlyph(x, y, size) {
   push();
   translate(x, y);
   
-  // Seleziona casualmente un colore di sfondo per il cerchio contenitore
+  // seleziona casualmente colore x sfondo x cerchio contenitore
   let backgroundColor = color(colors[floor(random(colors.length))]);
-  backgroundColor.setAlpha(150); // Imposta un po' di trasparenza
+  backgroundColor.setAlpha(150); //  trasparenza
   
-  // Disegna il cerchio di contenimento del glifo con il colore di sfondo
+  // cerchio di contenimento del glifo con il colore di sfondo
   fill(backgroundColor);
   noStroke();
   ellipse(0, 0, size, size);
@@ -41,19 +40,19 @@ function drawGlyph(x, y, size) {
   // Disegna esattamente 5 cerchi interni posizionati casualmente ma sempre entro il perimetro
   for (let i = 0; i < numCircles; i++) {
     let angle = random(TWO_PI); // Angolo casuale per posizione interna
-    let distance = random(size * 0.2, (size / 2) - (size * 0.1)); // Distanza variabile dal centro per tenere i cerchi interni
+    let distance = random(size * 0.2, (size / 2) - (size * 0.1)); // distanza variabile dal centro per tenere i cerchi interni
     
     let offsetX = cos(angle) * distance;
     let offsetY = sin(angle) * distance;
     
-    let radius = random(size * 0.1, size * 0.25); // Dimensioni variabili per i cerchi interni
+    let radius = random(size * 0.1, size * 0.25); // dimensioni variabili x i cerchi interni
     let colorIndex = floor(random(colors.length));
     let col = color(colors[colorIndex]);
     col.setAlpha(180);
     
     fill(col);
     noStroke();
-    ellipse(offsetX, offsetY, radius * 2, radius * random(1.5, 2.5)); // Forma variabile (circolare/ellittica)
+    ellipse(offsetX, offsetY, radius * 2, radius * 2); // Assicurati che siano cerchi
   }
   
   pop();
